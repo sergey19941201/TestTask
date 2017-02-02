@@ -1,10 +1,11 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Widget;
 using Android.OS;
 
 namespace Test.Droid
 {
-    [Activity(Label = "Test.Droid", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Test.Droid", MainLauncher = true, Theme = "@android:style/Theme.Black.NoTitleBar", Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         private FragmentManager fragmentManager;
@@ -15,11 +16,20 @@ namespace Test.Droid
 
             SetContentView(Resource.Layout.Main);
 
+            //Initializing fragment manager for registration
             fragmentManager = this.FragmentManager;
             reg = new fragmentClasses.registrationFragment();
+            //Initializing fragment manager for registration ENDED
 
-            reg.Show(fragmentManager, "fragmentManager");
             SetContentView(Resource.Layout.Main);
+
+            var registerBN = FindViewById<Button>(Resource.Id.registerBN);
+            registerBN.Click += MainActivity_Click;
+        }
+
+        private void MainActivity_Click(object sender, EventArgs e)
+        {
+            reg.Show(fragmentManager, "fragmentManager");
         }
     }
 }

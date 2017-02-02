@@ -14,23 +14,24 @@ namespace Test.Droid.fragmentClasses
 {
     class registrationFragment : DialogFragment
     {
-        private EditText eng1_ET, eng2_ET, eng3_ET;
-        private EditText rusEdText;
-        private Button dobavitBn, zakritFragmentbn;
+        private EditText fNameET, lNameET, emailET, loginET, passwordET, confirm_passwordET;
+        private Button registerBN, zakritFragmentbn;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View rootView = inflater.Inflate(Resource.Layout.registrationFragment, container, false);
 
-            dobavitBn = rootView.FindViewById<Button>(Resource.Id.dobavitBn);
+            registerBN = rootView.FindViewById<Button>(Resource.Id.registerBN);
             zakritFragmentbn = rootView.FindViewById<Button>(Resource.Id.zakritFragmentBn);
 
-            eng1_ET = rootView.FindViewById<EditText>(Resource.Id.eng1_ET);
-            eng2_ET = rootView.FindViewById<EditText>(Resource.Id.eng2_ET);
-            eng3_ET = rootView.FindViewById<EditText>(Resource.Id.eng3_ET);
-            rusEdText = rootView.FindViewById<EditText>(Resource.Id.rusEditText);
+            fNameET = rootView.FindViewById<EditText>(Resource.Id.fNameET);
+            lNameET = rootView.FindViewById<EditText>(Resource.Id.lNameET);
+            emailET = rootView.FindViewById<EditText>(Resource.Id.emailET);
+            loginET = rootView.FindViewById<EditText>(Resource.Id.loginET);
+            passwordET = rootView.FindViewById<EditText>(Resource.Id.passwordET);
+            confirm_passwordET = rootView.FindViewById<EditText>(Resource.Id.confirm_passwordET);
 
-            dobavitBn.Click += DobavitBn_Click;
+            registerBN.Click += registerBN_Click;
             zakritFragmentbn.Click += ZakritFragmentbn_Click;
 
             return rootView;
@@ -41,25 +42,32 @@ namespace Test.Droid.fragmentClasses
             Dismiss();
         }
 
-        private void DobavitBn_Click(object sender, EventArgs e)
+        private void registerBN_Click(object sender, EventArgs e)
         {
 
-            if (String.IsNullOrEmpty(eng1_ET.Text) || String.IsNullOrEmpty(eng2_ET.Text) || String.IsNullOrEmpty(eng3_ET.Text) || String.IsNullOrEmpty(rusEdText.Text))
+            if (String.IsNullOrEmpty(fNameET.Text) || String.IsNullOrEmpty(lNameET.Text) || String.IsNullOrEmpty(emailET.Text)
+                || String.IsNullOrEmpty(loginET.Text) || String.IsNullOrEmpty(passwordET.Text))
             {
-                Toast.MakeText(this.Activity, "Çàïîëíèòå âñå ïîëÿ", ToastLength.Short).Show();
+                Toast.MakeText(this.Activity, "Fill all the fields", ToastLength.Short).Show();
             }
+
             else
             {
-                Toast.MakeText(this.Activity, "Êàðòà äîáàâëåíà", ToastLength.Short).Show();
-
-                //Clearing EditTexts:
-                eng1_ET.Text = null;
-                eng2_ET.Text = null;
-                eng3_ET.Text = null;
-                rusEdText.Text = null;
-
-                Dismiss();
+                if (passwordET.Text != confirm_passwordET.Text)
+                {
+                    Toast.MakeText(this.Activity, "Passwords do not match", ToastLength.Short).Show();
+                }
+                else
+                {
+                    Dismiss();
+                }
             }
+            /*
+            //Clearing EditTexts:
+            eng1_ET.Text = null;
+            eng2_ET.Text = null;
+            eng3_ET.Text = null;
+            rusEdText.Text = null;*/
         }
     }
 }
