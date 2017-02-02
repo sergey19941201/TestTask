@@ -2,10 +2,11 @@
 using Android.App;
 using Android.Widget;
 using Android.OS;
+using Android.Content.PM;
 
 namespace Test.Droid
 {
-    [Activity(Label = "Test.Droid", MainLauncher = true, Theme = "@android:style/Theme.Black.NoTitleBar", Icon = "@drawable/icon")]
+    [Activity(Label = "Test.Droid", MainLauncher = true, Theme = "@android:style/Theme.Black.NoTitleBar", Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Activity
     {
         private FragmentManager fragmentManager;

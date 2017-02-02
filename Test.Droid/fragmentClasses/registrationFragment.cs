@@ -10,6 +10,16 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
+
+
+
+
+
+
+
+using System.Net;
+using System.IO;
+
 namespace Test.Droid.fragmentClasses
 {
     class registrationFragment : DialogFragment
@@ -59,7 +69,32 @@ namespace Test.Droid.fragmentClasses
                 }
                 else
                 {
-                    Dismiss();
+                    const String CorrectAuthText = "Авторизация прошла успешно";
+                    var request = (HttpWebRequest)WebRequest.Create("http://datausers1.azurewebsites.net/PersonsClasses/Create");
+                    var postData = "btn_auth=True";
+                    postData += "&LastName=" + lNameET.Text;
+                    postData += "&FirstName"+ fNameET.Text;
+                    postData += "&Email"+ emailET.Text;
+                    postData += "&login_"+ loginET.Text;
+                    postData += "&password_"+ passwordET.Text;
+                    var data = Encoding.ASCII.GetBytes(postData);
+                    request.Method = "POST";
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.ContentLength = data.Length;
+
+                    using (var stream = request.GetRequestStream())
+                    { stream.Write(data, 0, data.Length); }
+                    var response = (HttpWebResponse)request.GetResponse();
+                    var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    if(responseString.Contains(CorrectAuthText))
+                    {
+                        Toast.MakeText(this.Activity, "Authorized!", ToastLength.Short).Show();
+                    }
+                    else
+                    {
+                        Toast.MakeText(this.Activity, "Authorization failed!", ToastLength.Short).Show();
+                    }
+                        Dismiss();
                 }
             }
             /*
