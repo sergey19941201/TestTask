@@ -10,6 +10,7 @@ namespace Test.Droid
     {
         private FragmentManager fragmentManager;
         private fragmentClasses.registrationFragment reg;
+        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -23,8 +24,8 @@ namespace Test.Droid
 
             SetContentView(Resource.Layout.Main);
 
-            var registerBN = FindViewById<Button>(Resource.Id.registerBN);
-            registerBN.Click += MainActivity_Click;
+            var registerBn = FindViewById<Button>(Resource.Id.registerBn);
+            registerBn.Click += MainActivity_Click;
         }
 
         private void MainActivity_Click(object sender, EventArgs e)
