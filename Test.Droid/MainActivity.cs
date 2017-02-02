@@ -15,6 +15,7 @@ namespace Test.Droid
 
             SetContentView(Resource.Layout.Main);
 
+            fragmentManager = this.FragmentManager;
             reg = new fragmentClasses.registrationFragment();
 
             reg.Show(fragmentManager, "fragmentManager");
