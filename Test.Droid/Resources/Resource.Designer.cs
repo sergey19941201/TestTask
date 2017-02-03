@@ -63,6 +63,18 @@ namespace Test.Droid
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f05000f
+			public const int Play = 2131034127;
+			
+			// aapt resource value: 0x7f05000d
+			public const int Record = 2131034125;
+			
+			// aapt resource value: 0x7f050010
+			public const int SampleVideoView = 2131034128;
+			
+			// aapt resource value: 0x7f05000e
+			public const int Stop = 2131034126;
+			
 			// aapt resource value: 0x7f050009
 			public const int confirm_passwordET = 2131034121;
 			
@@ -120,6 +132,9 @@ namespace Test.Droid
 			
 			// aapt resource value: 0x7f030001
 			public const int registrationFragment = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int VideoRecord = 2130903042;
 			
 			static Layout()
 			{
