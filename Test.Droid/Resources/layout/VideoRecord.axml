@@ -11,14 +11,14 @@
             android:id="@+id/Record"
             android:layout_width="67.0dp"
             android:layout_height="wrap_content"
-            android:text="Record" 
-            android:layout_marginTop="3dp"/>
+            android:text="Record"
+            android:layout_marginTop="3dp" />
         <Button
             android:id="@+id/Stop"
             android:layout_width="67.0dp"
             android:layout_height="wrap_content"
-            android:text="Stop" 
-            android:layout_marginTop="3dp"/>
+            android:text="Stop"
+            android:layout_marginTop="3dp" />
         <Button
             android:id="@+id/Play"
             android:layout_width="68.5dp"
@@ -26,8 +26,14 @@
             android:text="Play"
             android:layout_marginTop="3dp" />
     </LinearLayout>
-    <VideoView
-        android:id="@+id/SampleVideoView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:background="#ffffff">
+        <VideoView
+            android:id="@+id/SampleVideoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 </LinearLayout>

@@ -10,10 +10,13 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Media;
+using Android.Provider;
+using Android.Hardware;
+using Android.Content.PM;
 
 namespace Test.Droid
 {
-    [Activity(Label = "videoRecord", Theme = "@android:style/Theme.Black.NoTitleBar", Icon = "@drawable/icon")]
+    [Activity(Label = "videoRecord", Theme = "@android:style/Theme.Black.NoTitleBar", Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Landscape)]
     public class videoRecord : Activity
     {
         MediaRecorder recorder;
@@ -29,7 +32,14 @@ namespace Test.Droid
             var play = FindViewById<Button>(Resource.Id.Play);
             var video = FindViewById<VideoView>(Resource.Id.SampleVideoView);
 
-            string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/test.mp4";
+            //displaying from camera
+            /*Intent intent = new Intent(MediaStore.ActionVideoCapture);
+            StartActivityForResult(intent, 0);*/
+            //displaying from camera ENDED
+
+            String timeStamp = GetTimestamp(DateTime.Now);
+
+            string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/" + timeStamp + "test.mp4";
 
             record.Click += delegate
             {
@@ -44,6 +54,7 @@ namespace Test.Droid
                 recorder.SetOutputFile(path);
                 recorder.SetPreviewDisplay(video.Holder.Surface);
                 recorder.Prepare();
+
                 recorder.Start();
             };
 
@@ -74,6 +85,11 @@ namespace Test.Droid
                 recorder.Dispose();
                 recorder = null;
             }
+        }
+
+        public static String GetTimestamp(DateTime value)
+        {
+            return value.ToString("yyyyMMddHHmmssffff");
         }
     }
 }
